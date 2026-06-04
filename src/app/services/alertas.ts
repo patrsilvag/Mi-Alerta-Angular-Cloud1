@@ -24,4 +24,7 @@ export class AlertasService {
     // Mantenemos la lógica de validación por rol si es necesaria para la seguridad
     return this.http.put<AlertaVital>(`${this.apiUrl}/${id}?rol=ADMIN`, alerta);
   }
+  actualizarEstado(id: number, estado: string) {
+    return this.http.patch(`/api/alertas/${id}/estado`, estado);
+  }
 }

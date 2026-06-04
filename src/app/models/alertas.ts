@@ -6,4 +6,5 @@ export interface AlertaVital {
   nombrePaciente: string;
   habitacion: string;
   signosVitales: string; // El resumen de 1000 caracteres
+  estado: string;
 }

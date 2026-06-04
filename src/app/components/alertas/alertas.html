@@ -9,7 +9,7 @@
           <th>Paciente</th>
           <th>Habitación</th>
           <th>Estado Alerta</th>
-          <th>Acción</th>
+          <th>Estado Gestión</th> <th>Acción</th>
         </tr>
       </thead>
       <tbody>
@@ -20,6 +20,12 @@
             <span class="badge" [style.background-color]="a.colorAlerta === 'ROJO' ? 'red' : (a.colorAlerta === 'AMARILLO' ? 'orange' : 'green')">
               {{ a.colorAlerta }}
             </span>
+          </td>
+          <td>
+            <select [(ngModel)]="a.estado" (change)="cambiarEstado(a)">
+              <option value="Pendiente">Pendiente</option>
+              <option value="Atendido">Atendido</option>
+            </select>
           </td>
           <td>
             <button class="btn-detalles" (click)="verDetalles(a)">Ver Detalles</button>
@@ -35,6 +41,7 @@
     <div *ngIf="alertaSeleccionada" class="card-detalles">
       <h3>Paciente: {{ alertaSeleccionada.nombrePaciente }}</h3>
       <p><strong>Habitación:</strong> {{ alertaSeleccionada.habitacion }}</p>
+      <p><strong>Estado:</strong> {{ alertaSeleccionada.estado }}</p>
       <p><strong>Resumen clínico:</strong> {{ alertaSeleccionada.signosVitales }}</p>
       <p><small>Fecha de registro: {{ alertaSeleccionada.fechaHora | date:'short' }}</small></p>
     </div>

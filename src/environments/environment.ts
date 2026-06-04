@@ -8,6 +8,6 @@ export const environment = {
   // ✅ RUTAS RELATIVAS PARA EL PROXY
   apiAlertas: '/api/alertas',
 
-  //apiProductos: 'http://mi-app-docker/api/productos',
-  //apiPedidos: 'http://mi-app-docker/api/pedidos',
+  //apiAlertas: 'http://mi-app-docker/api/alertas',
+
 };
