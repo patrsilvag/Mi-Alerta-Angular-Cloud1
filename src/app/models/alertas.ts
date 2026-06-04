@@ -1,6 +1,6 @@
 export interface AlertaVital {
   id?: number;
-  fecha: string;
+  fechaHora: string; // <-- Asegúrate de que este nombre coincida con el HTML
   hora: string;
   colorAlerta: 'ROJO' | 'AMARILLO' | 'VERDE';
   nombrePaciente: string;

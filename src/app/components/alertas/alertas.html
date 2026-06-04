@@ -2,12 +2,13 @@
   <div class="scroll-container">
     <h1>Panel de Alertas Médicas</h1>
     <p>Pacientes en observación: {{ alertas.length }}</p>
+    
     <table class="table-alertas">
       <thead>
         <tr>
           <th>Paciente</th>
           <th>Habitación</th>
-          <th>Color Alerta</th>
+          <th>Estado Alerta</th>
           <th>Acción</th>
         </tr>
       </thead>
@@ -16,7 +17,7 @@
           <td>{{ a.nombrePaciente }}</td>
           <td>{{ a.habitacion }}</td>
           <td>
-            <span class="badge" [style.background-color]="a.colorAlerta">
+            <span class="badge" [style.background-color]="a.colorAlerta === 'ROJO' ? 'red' : (a.colorAlerta === 'AMARILLO' ? 'orange' : 'green')">
               {{ a.colorAlerta }}
             </span>
           </td>
@@ -30,11 +31,14 @@
 
   <div class="scroll-container">
     <h2>Resumen de Signos Vitales</h2>
+    
     <div *ngIf="alertaSeleccionada" class="card-detalles">
       <h3>Paciente: {{ alertaSeleccionada.nombrePaciente }}</h3>
       <p><strong>Habitación:</strong> {{ alertaSeleccionada.habitacion }}</p>
       <p><strong>Resumen clínico:</strong> {{ alertaSeleccionada.signosVitales }}</p>
+      <p><small>Fecha de registro: {{ alertaSeleccionada.fechaHora | date:'short' }}</small></p>
     </div>
-    <p *ngIf="!alertaSeleccionada">Seleccione una alerta para ver detalles.</p>
+    
+    <p *ngIf="!alertaSeleccionada">Seleccione un paciente de la tabla para ver sus detalles clínicos.</p>
   </div>
 </div>
