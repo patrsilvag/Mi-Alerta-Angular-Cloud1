@@ -1,15 +1,38 @@
 <div class="main-layout">
   <div class="scroll-container">
     <h1>Panel de Alertas Médicas</h1>
-    <p>Pacientes en observación: {{ alertas.length }}</p>
     
+ <div class="form-creacion">
+  <h3>Nueva Alerta</h3>
+  <div class="formulario-grid">
+    <div class="row">
+      <input [(ngModel)]="nuevaAlerta.nombrePaciente" placeholder="Nombre Paciente" class="full-width" required>
+      <input [(ngModel)]="nuevaAlerta.habitacion" placeholder="Habit." maxlength="5" required>
+      <select [(ngModel)]="nuevaAlerta.colorAlerta" required>
+        <option value="VERDE">VERDE</option>
+        <option value="AMARILLO">AMARILLO</option>
+        <option value="ROJO">ROJO</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <input [(ngModel)]="nuevaAlerta.signosVitales" placeholder="Signos Vitales" class="flex-grow" maxlength="1000" required>
+      <button (click)="guardar()" class="btn-guardar">Guardar Alerta</button>
+    </div>
+  </div>
+</div>
+
+
+    <p>Pacientes en observación: {{ alertas.length }}</p>
+  <div class="table-responsive">
     <table class="table-alertas">
       <thead>
         <tr>
           <th>Paciente</th>
           <th>Habitación</th>
           <th>Estado Alerta</th>
-          <th>Estado Gestión</th> <th>Acción</th>
+          <th>Estado Gestión</th>
+          <th>Acción</th>
         </tr>
       </thead>
       <tbody>
@@ -29,23 +52,25 @@
           </td>
           <td>
             <button class="btn-detalles" (click)="verDetalles(a)">Ver Detalles</button>
+            <button class="btn-eliminar" (click)="eliminar(a.id!)" style="margin-left: 5px; color: red;">
+                Eliminar
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+  </div>  
 
   <div class="scroll-container">
     <h2>Resumen de Signos Vitales</h2>
-    
     <div *ngIf="alertaSeleccionada" class="card-detalles">
       <h3>Paciente: {{ alertaSeleccionada.nombrePaciente }}</h3>
       <p><strong>Habitación:</strong> {{ alertaSeleccionada.habitacion }}</p>
       <p><strong>Estado:</strong> {{ alertaSeleccionada.estado }}</p>
-      <p><strong>Resumen clínico:</strong> {{ alertaSeleccionada.signosVitales }}</p>
+      <p><strong>Resumen Signos:</strong> {{ alertaSeleccionada.signosVitales }}</p>
       <p><small>Fecha de registro: {{ alertaSeleccionada.fechaHora | date:'short' }}</small></p>
     </div>
-    
     <p *ngIf="!alertaSeleccionada">Seleccione un paciente de la tabla para ver sus detalles clínicos.</p>
   </div>
 </div>

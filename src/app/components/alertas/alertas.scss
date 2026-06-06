@@ -1,6 +1,7 @@
+/* Layout Principal (60% / 40%) */
 .main-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 6fr 4fr;
   gap: 20px;
   height: 85vh;
   padding: 20px;
@@ -14,50 +15,81 @@
   background-color: #f9f9f9;
 }
 
-table {
+/* --- NUEVAS REGLAS PARA SCROLL HORIZONTAL --- */
+.table-responsive {
   width: 100%;
+  overflow-x: auto; /* Activa el scroll horizontal */
+  -webkit-overflow-scrolling: touch; /* Fluidez en móviles */
+  margin-top: 10px;
+  border: 1px solid #ddd; /* Opcional: para delimitar el área de scroll */
+}
+
+.table-alertas {
+  width: 100%;
+  min-width: 600px; /* Asegura un ancho mínimo para activar el scroll en pantallas estrechas */
   border-collapse: collapse;
   background: white;
 }
 
-th,
-td {
+/* Resto de estilos de la tabla se mantienen igual */
+.table-alertas th,
+.table-alertas td {
   padding: 10px;
   border-bottom: 1px solid #ddd;
   text-align: left;
 }
 
-th {
+.table-alertas th {
   background-color: #efefef;
+  white-space: nowrap; /* Evita que los encabezados se rompan en varias líneas */
 }
 
-.btn-agregar {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
+/* Formulario de Creación con filas */
+.formulario-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.btn-agregar:hover {
-  opacity: 0.9;
-}
-
-.btn-finalizar {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px;
+.row {
+  display: flex;
+  gap: 10px;
   width: 100%;
+}
+
+.formulario-grid input, 
+.formulario-grid select {
+  padding: 8px;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  cursor: pointer;
 }
 
-.btn-finalizar:hover {
-  opacity: 0.9;
-}
+.formulario-grid .row:nth-child(1) input[placeholder="Nombre Paciente"] { flex: 3; }
+.formulario-grid .row:nth-child(1) input[placeholder="Habit."] { flex: 0 0 90px; }
+.formulario-grid .row:nth-child(1) select { flex: 1; }
+.formulario-grid .row:nth-child(2) input { flex: 1; }
 
-.footer-carrito {
-  margin-top: 20px;
+/* Botones, Badges y Tarjeta (sin cambios) */
+.btn-detalles { background-color: #17a2b8; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
+.btn-eliminar { background-color: #dc3545; color: white !important; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
+.btn-guardar { background-color: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+.btn-detalles:hover, .btn-eliminar:hover, .btn-guardar:hover { opacity: 0.9; }
+.badge { padding: 4px 8px; border-radius: 4px; color: white; font-size: 0.85em; }
+.card-detalles { background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd; }
+
+/* --- ADAPTACIÓN RESPONSIVE --- */
+@media (max-width: 900px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .formulario-grid .row {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .formulario-grid .row input, 
+  .formulario-grid .row select {
+    width: 100%;
+  }
 }
